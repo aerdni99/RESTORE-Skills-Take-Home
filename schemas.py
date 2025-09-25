@@ -13,3 +13,16 @@ class Patient(PatientBase):
 
     class Config:
         orm_mode = True
+
+class TherapistBase(BaseModel):
+    name: str
+
+class TherapistCreate(TherapistBase):
+    pass
+
+class Therapist(TherapistBase):
+    id: int
+    patients: List[Patient] = []
+
+    class Config:
+        orm_mode = True
