@@ -11,6 +11,8 @@ services:
   web:
     build: .
     container_name: restore_skills_app
+    env_file:
+     - .env
     ports:
       - "8000:8000"
     volumes:
