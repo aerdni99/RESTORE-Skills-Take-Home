@@ -12,18 +12,22 @@ This project runs inside of a python docker image so all that is needed to start
 
 ### Table Schemas
 ```json
-Therapists {
-    "id": "Int (Primary Key)",
-    "name": "String (Not Null)",
-    "patients": "List[Patient] (Relationship: all patients assigned to this therapist)"
+{
+    Therapists {
+        "id": "Int (Primary Key)",
+        "name": "String (Not Null)",
+        "patients": "List[Patient] (Relationship: all patients assigned to this therapist)"
+    }
 }
 ```
 ```json
-Patients {
-    "id": "Int (Primary Key)",
-    "name": "String (Not Null)",
-    "therapist_id": "Int (Foreign Key, Therapists.id, Nullable)"
-}   
+{
+    Patients {
+        "id": "Int (Primary Key)",
+        "name": "String (Not Null)",
+        "therapist_id": "Int (Foreign Key, Therapists.id, Nullable)"
+    } 
+}  
 ```
 
 ### Routes
