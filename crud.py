@@ -24,6 +24,10 @@ def get_therapists(db: Session, skip: int = 0, limit: int = 10):
 def delete_therapist(db: Session, therapist_id: int):
     therapist = db.query(models.Therapist).filter(models.Therapist.id == therapist_id).first()
     if therapist:
+        for patient in therapist.patients:
+            patient.therapist_id = None
+        db.commit()
+        
         db.delete(therapist)
         db.commit()
     return therapist
