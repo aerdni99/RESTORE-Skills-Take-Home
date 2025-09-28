@@ -20,12 +20,23 @@ def get_db():
     finally:
         db.close()
 
+
+
+### GENERAL ROUTES ###########################################################
 # Root
 @app.get("/")
 def read_root():
     return {"message": "Welcome to RESTORE-Skills Application Take Home Assessment - Angelo Indre"}
 
-### THERAPIST ROUTES
+# Clear Tables
+@app.delete("/clear/")
+def clear_tables(db: Session = Depends(get_db)):
+    crud.clear(db)
+    return {"detail": "All tables cleared"}
+
+
+
+### THERAPIST ROUTES #########################################################
 # Create therapist
 @app.post("/therapists/", response_model=schemas.Therapist)
 def create_therapist(therapist: schemas.TherapistCreate, db: Session = Depends(get_db)):
@@ -52,7 +63,9 @@ def delete_therapist(therapist_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Therapist not found")
     return therapist
 
-### PATIENT ROUTES
+
+
+### PATIENT ROUTES ###########################################################
 # Create a patient
 @app.post("/patients/", response_model=schemas.Patient)
 def create_patient(patient: schemas.PatientCreate, db: Session = Depends(get_db)):
@@ -91,8 +104,3 @@ def assign_therapist(patient_id: int, therapist_id: int, db: Session = Depends(g
     return patient
 
 
-### NUKE TABLES
-@app.delete("/clear/")
-def clear_tables(db: Session = Depends(get_db)):
-    crud.clear(db)
-    return {"detail": "All tables cleared"}
