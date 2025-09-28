@@ -6,7 +6,9 @@ This project creates a database with 2 tables (outlined below) and a FastAPI app
 This project runs inside of a python docker image so all that is needed to start up is
 1. Clone the repository
 2. in the root directory run `docker compose up --build` (the build flag ensures that all dependencies in requirements.txt get installed)
-3. The app should now be running, visit [localhost:8000/](localhost:8000/) for the root message, or [localhost:8000/docs](localhost:8000/docs) for the SwaggerUI
+3. The app should now be running
+ - Visit [http://localhost:8000/](http://localhost:8000/) for the root message
+ - Visit [http://localhost:8000/docs](http://localhost:8000/docs) for the SwaggerUI
 
 # Additional Info
 
