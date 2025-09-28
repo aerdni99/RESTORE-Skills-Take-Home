@@ -68,7 +68,7 @@ def get_patient(patient_id: int, db: Session = Depends(get_db)):
 
 # Get all patients
 @app.get("/patients/", response_model=List[schemas.Patient])
-def get_patients(db: Session = Depends(get_db)):
+def list_patients(db: Session = Depends(get_db)):
     return crud.get_patients(db)
 
 # Remove a patient

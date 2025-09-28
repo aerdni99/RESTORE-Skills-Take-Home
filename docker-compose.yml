@@ -2,8 +2,10 @@ services:
   db:
     image: postgres:15
     container_name: restore_skills_db
-    env_file:
-     - .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: therapists_and_patients
     ports:
       - "5432:5432"
     volumes:
@@ -11,14 +13,15 @@ services:
   web:
     build: .
     container_name: restore_skills_app
-    env_file:
-     - .env
+    environment:
+      PYTHONUNBUFFERED: 1
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: therapists_and_patients
     ports:
       - "8000:8000"
     volumes:
       - .:/app
-    environment:
-      PYTHONUNBUFFERED: 1
     depends_on:
       - db
 
