@@ -13,7 +13,7 @@ This project runs inside of a python docker image so all that is needed to start
 ### Table Schemas
 ```json
 {
-    Therapists {
+    "Therapists": {
         "id": "Int (Primary Key)",
         "name": "String (Not Null)",
         "patients": "List[Patient] (Relationship: all patients assigned to this therapist)"
@@ -22,7 +22,7 @@ This project runs inside of a python docker image so all that is needed to start
 ```
 ```json
 {
-    Patients {
+    "Patients": {
         "id": "Int (Primary Key)",
         "name": "String (Not Null)",
         "therapist_id": "Int (Foreign Key, Therapists.id, Nullable)"
