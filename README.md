@@ -1,7 +1,16 @@
 # RESTORE-Skills-Take-Home
 FastAPI take home assignment for RESTORE-Skills Junior Integrations Engineer Application
+This project creates a database with 2 tables (outlined below) and a FastAPI app that manipulates these two 
 
-### Schemas
+### Startup
+This project runs inside of a python docker image so all that is needed to start up is
+1. Clone the repository
+2. in the root directory run `docker compose up --build` (the build flag ensures that all dependencies in requirements.txt get installed)
+3. The app should now be running, visit [localhost:8000/](localhost:8000/) for the root message, or [localhost:8000/docs](localhost:8000/docs) for the SwaggerUI
+
+# Additional Info
+
+### Table Schemas
 ```json
 Therapists {
     "id": "Int (Primary Key)",
@@ -60,5 +69,7 @@ Patients {
 | pydantic          | Ensures expected datatypes for input output of database functions in my API. Used in Schemas.py |
 
 ### Notes
+I have not previously worked with any of the python dependencies from requirements.txt aside from psycopg2.
+When getting started, I used ChatGPT to help me figure out a good project structure.
 
-
+The relationship between patients and therapists defined in models.py allows a query for a therapist to return all the info on all their patients as if the patient list was stored at that therapist's row in the table, but that patient list is constructed based off of the defined relationship. I had to dig into this and make sure I wasn't creating a data redundancy setting it up this way.
